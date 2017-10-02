@@ -70,7 +70,7 @@
           
 
           
-            <a href="../index.html">
+            <a href="https://verve-lang.org">
           
 
           
@@ -181,8 +181,20 @@
             
   <div class="section" id="generics">
 <h1>Generics<a class="headerlink" href="#generics" title="Permalink to this headline">¶</a></h1>
-<p>TODO</p>
-</div>
+<pre class="language-verve"><code class="language-verve">fn mapInt(fun: (Int) -&gt; Int, list: IntList) -&gt; IntList {
+  // ...
+}</code></pre><pre class="language-verve"><code class="language-verve">fn mapFloat(fun: (Float) -&gt; Float, list: FloatList) -&gt; FloatList {
+  // ...
+}</code></pre><pre class="language-verve"><code class="language-verve">fn map&lt;T&gt;(fun: (T) -&gt; T, list: List&lt;T&gt;) -&gt; List&lt;T&gt; {
+  // ...
+}
+
+map&lt;Int, Int&gt;(increment, [1, 2, 3])</code></pre><pre class="language-verve"><code class="language-verve">fn map&lt;T, U&gt;(fun: (T) -&gt; U, list: List&lt;T&gt;) -&gt; List&lt;U&gt; {
+  // ...
+}
+
+map&lt;Int, Int&gt;(increment, [1, 2, 3]) //=&gt; [2, 3, 4] : List&lt;Int&gt;
+map&lt;Int, Bool&gt;((&gt;)(2), [1, 2, 3]) //=&gt; [False, False, True] : List&lt;Bool&gt;</code></pre></div>
 
 
            </div>

@@ -70,7 +70,7 @@
           
 
           
-            <a href="../index.html">
+            <a href="https://verve-lang.org">
           
 
           
@@ -181,9 +181,9 @@
             
   <div class="section" id="type-aliases">
 <h1>Type Aliases<a class="headerlink" href="#type-aliases" title="Permalink to this headline">¶</a></h1>
-<p>As types get more complicated, it not just becomes annoying to have to type really long type signatures, but it can also become hard to read the code and understand what those types actually refer to.</p>
-<p>Just like we avoid magic numbers, it can be useful to give names to types.</p>
-<pre class="language-verve"><code class="language-verve">type Callback = (Int) -> Int
+<p>As types get more complicated, it can be become cumbersome to have to repeat long types all over your code, and it often results in code that is hard to read and understand.</p>
+<p>Just like it’s good practice to have constants instead of “magic numbers” all over your code, it can be useful to give names to types too.</p>
+<pre class="language-verve"><code class="language-verve">type Callback = (Int) -&gt; Int
 
 fn doSomething(callback: Callback) { /* ... */ }</code></pre></div>
 

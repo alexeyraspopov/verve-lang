@@ -70,7 +70,7 @@
           
 
           
-            <a href="../index.html">
+            <a href="https://verve-lang.org">
           
 
           
@@ -181,7 +181,26 @@
             
   <div class="section" id="classes">
 <h1>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h1>
-<p>TODO</p>
+<pre class="language-verve"><code class="language-verve">class C {
+  let field : Type
+
+  fn method() -&gt; Type {
+    self.field
+  }
+}</code></pre><p>Although Verve has classes, they are not like classes you would find in object-oriented languages such as Java. In Verve, classes are a convenience for specifying a relationship between some data and functions, but they are still immutable, all fields are public and methods are just regular functions that take <code class="docutils literal"><span class="pre">self</span></code> as the first argument.</p>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>The class C above is syntactic sugar for:</p>
+<pre class="language-verve"><code class="language-verve">enum C {
+  C { field: Type }
+}
+
+fn method(self: C) -&gt; Type {
+  match self {
+    case C(self):
+      self.field
+  }
+}</code></pre></div>
 </div>
 
 

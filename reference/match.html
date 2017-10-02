@@ -70,7 +70,7 @@
           
 
           
-            <a href="../index.html">
+            <a href="https://verve-lang.org">
           
 
           
@@ -183,7 +183,7 @@
 <h1>Match<a class="headerlink" href="#match" title="Permalink to this headline">¶</a></h1>
 <p>In order to use an enum value we need to determine which option was used to create it. That is done using a <code class="code docutils literal"><span class="pre">match</span></code> expression.</p>
 <p>Using the example enum from last page we can implement a function <code class="code docutils literal"><span class="pre">area</span></code>.</p>
-<pre class="language-verve"><code class="language-verve">fn area(shape: Shape) -> Int {
+<pre class="language-verve"><code class="language-verve">fn area(shape: Shape) -&gt; Int {
   match shape {
     case Square(side): side * side
     case Rectandle(width, height): width * height

@@ -70,7 +70,7 @@
           
 
           
-            <a href="../index.html">
+            <a href="https://verve-lang.org">
           
 
           
@@ -181,28 +181,58 @@
             
   <div class="section" id="functions">
 <h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
-<p>Functions are defined using the keyword <code class="code docutils literal"><span class="pre">fn</span></code> and must have explicit type annotations.</p>
-<pre class="language-verve"><code class="language-verve">fn double(x: Int) -> Int {
-  x * x
+<p>Functions are defined using the keyword <code class="docutils literal"><span class="pre">fn</span></code> and must have explicit type annotations.</p>
+<pre class="language-verve"><code class="language-verve">fn double(x: Int) -&gt; Int {
+  x * 2
 }</code></pre><p>Functions can be called using C-style function calls:</p>
-<pre class="language-verve"><code class="language-verve">double(42)</code></pre><div class="section" id="currying">
+<pre class="language-verve"><code class="language-verve">double(42)</code></pre><div class="section" id="void-functions">
+<h2>Void Functions<a class="headerlink" href="#void-functions" title="Permalink to this headline">¶</a></h2>
+<p>Functions that do not return a value can omit the return type instead of explicitly saying <code class="docutils literal"><span class="pre">Void</span></code>.</p>
+<pre class="language-verve"><code class="language-verve">fn ignore&lt;T&gt;(x: T) {
+  // evaluates whatever is passed into `x`, but ignores it's result
+}</code></pre></div>
+<div class="section" id="currying">
 <h2>Currying<a class="headerlink" href="#currying" title="Permalink to this headline">¶</a></h2>
 <p>All the functions are automatically curried, which means that both of the following are equivalent.</p>
-<pre class="language-verve"><code class="language-verve">fn add(x: Int, y: Int) -> Int {
+<pre class="language-verve"><code class="language-verve">fn add(x: Int, y: Int) -&gt; Int {
   x + y
 }
 
-fn add(x: Int) -> (Int) -> Int {
-  fn (y: Int) -> Int {
+fn add(x: Int) -&gt; (Int) -&gt; Int {
+  fn add'(y: Int) -&gt; Int {
     x + y
   }
-}</code></pre><p>Both of the <code class="code docutils literal"><span class="pre">add</span></code> functions defined above can be called in any of the following ways.</p>
+}</code></pre><p>Both of the <code class="docutils literal"><span class="pre">add</span></code> functions defined above can be called in any of the following ways.</p>
 <pre class="language-verve"><code class="language-verve">add(3, 5)
 
 add(3)(5)
 
 let add3 = add(3)
 add3(5)</code></pre></div>
+<div class="section" id="universal-function-call-syntax-ufcs">
+<h2>Universal Function Call Syntax (UFCS)<a class="headerlink" href="#universal-function-call-syntax-ufcs" title="Permalink to this headline">¶</a></h2>
+<p>UFCS allows you to call a function as if was a method of its first argument. Let’s see an example:</p>
+<pre class="language-verve"><code class="language-verve">fn bool_to_int(x: Bool) -&gt; Int {
+  if x { 1 } else { 0 }
+}
+
+bool_to_int(False) //=&gt; 0 : Int
+
+// Alternatively
+
+True.bool_to_int() //=&gt; 1 : Int</code></pre><p>This makes it possible to “extend” a class after its definition.</p>
+<pre class="language-verve"><code class="language-verve">class C { /* ... */ }
+
+let c = C({})
+
+fn printC(self: C) {
+  // ...
+}
+
+c.printC()</code></pre><p>And behaves similar to the reverse application operator in other functional languages like <a class="reference external" href="http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#|&gt;">Elm</a>, <a class="reference external" href="https://msdn.microsoft.com/en-us/visualfsharpdocs/conceptual/operators.%5b-h%5d-%5d%5b't1,'u%5d-function-%5bfsharp%5d">F#</a> and <a class="reference external" href="http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html#VAL%28%7C%3E%29">OCaml</a> (and recently proposed to <a class="reference external" href="https://github.com/tc39/proposal-pipeline-operator">JavaScript</a>):</p>
+<pre class="language-verve"><code class="language-verve">list.map(f).filter(g).sort(h).iter(i)</code></pre><p>is equivalent to the following in Elm for example:</p>
+<pre class="language-verve"><code class="language-verve">list |&gt; map f |&gt; filter g |&gt; sort h |&gt; iter i</code></pre><p>with the difference that with UFCS the object is passed as the first argument and with the reverse application operator it would be passed as the last argument.</p>
+</div>
 </div>
 
 

@@ -70,7 +70,7 @@
           
 
           
-            <a href="../index.html">
+            <a href="https://verve-lang.org">
           
 
           
@@ -182,7 +182,7 @@
   <div class="section" id="operators">
 <h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
 <p>On top of functions, it is sometimes useful to define operators for common operations. Like <code class="code docutils literal"><span class="pre">+</span></code> and <code class="code docutils literal"><span class="pre">*</span></code> for infix addition and multiplication.</p>
-<pre class="language-verve"><code class="language-verve">operator (x: Int) + (y: Int) -> Int {
+<pre class="language-verve"><code class="language-verve">operator (x: Int) + (y: Int) -&gt; Int {
   int_add(x, y)
 }</code></pre><p>Operators are also curried function, and be called as a regular function by wrapping it in parentheses.</p>
 <pre class="language-verve"><code class="language-verve">(+)(3, 5)
@@ -194,7 +194,7 @@ add(3, 5)</code></pre><div class="section" id="associativity-precedence">
 <h2>Associativity &amp; Precedence<a class="headerlink" href="#associativity-precedence" title="Permalink to this headline">¶</a></h2>
 <p>When defining an operator, you can use the attributes <code class="code docutils literal"><span class="pre">#prec</span></code> and <code class="code docutils literal"><span class="pre">#assoc</span></code> to specify.</p>
 <pre class="language-verve"><code class="language-verve">#assoc(left) #prec(higher(+))
-operator (x: Int) * (y: Int) -> Int {
+operator (x: Int) * (y: Int) -&gt; Int {
   int_mul(x, y)
 }</code></pre></div>
 </div>

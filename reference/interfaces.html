@@ -70,7 +70,7 @@
           
 
           
-            <a href="../index.html">
+            <a href="https://verve-lang.org">
           
 
           
@@ -181,7 +181,30 @@
             
   <div class="section" id="interfaces">
 <h1>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">¶</a></h1>
-<p>TODO</p>
+<div class="section" id="creating-a-new-interface">
+<h2>Creating a new Interface<a class="headerlink" href="#creating-a-new-interface" title="Permalink to this headline">¶</a></h2>
+<pre class="language-verve"><code class="language-verve">interface Shape&lt;T&gt; {
+  let area : (T) -&gt; Int
+  let perimeter : (T) -&gt; Int
+}</code></pre></div>
+<div class="section" id="conforming-to-an-interface">
+<h2>Conforming to an Interface<a class="headerlink" href="#conforming-to-an-interface" title="Permalink to this headline">¶</a></h2>
+<pre class="language-verve"><code class="language-verve">implementation Shape&lt;Square&gt; {
+  fn area(s: Square) -&gt; Int {
+    s.side * s.side
+  }
+
+  fn perimeter(s: Square) -&gt; Int {
+    s.side * 4
+  }
+}</code></pre></div>
+<div class="section" id="interfaces-and-generics">
+<h2>Interfaces and Generics<a class="headerlink" href="#interfaces-and-generics" title="Permalink to this headline">¶</a></h2>
+<pre class="language-verve"><code class="language-verve">fn printArea(s: Shape) { /* ... */ }
+//=&gt; TypeError: Unknown type: Shape</code></pre><p>As it turns out, <code class="docutils literal"><span class="pre">Shape</span></code> is not a type, it’s an interface. In order to write a function that accepts any shape you need a type that conforms to the <code class="docutils literal"><span class="pre">Shape</span></code> interface.</p>
+<pre class="language-verve"><code class="language-verve">fn printArea&lt;T: Shape&gt;(s: Shape) {
+  print(s.area())
+}</code></pre></div>
 </div>
 
 
